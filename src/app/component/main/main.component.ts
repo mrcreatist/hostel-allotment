@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
+import { MasterService } from 'src/app/service/master.service';
 
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent {
 
-  constructor() { }
+  constructor (
+    private _master: MasterService
+  ) { }
 
-  ngOnInit() {
+  getClass() {
+    return this._master.getClassSection();
+  }
+
+  getFood() {
+    return this._master.getFoodType();
   }
 
 }
