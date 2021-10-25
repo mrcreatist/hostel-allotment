@@ -70,6 +70,10 @@ export class MasterService {
       B: {
         veg: [],
         nonVeg: []
+      },
+      NA: {
+        veg: [],
+        nonVeg: []
       }
     }
   }

@@ -1,8 +1,10 @@
 <app-header></app-header>
 
 <form class="container" [formGroup]="form">
-    <app-allotment-limit class="item" [control]="form.controls.registration"></app-allotment-limit>
-    <app-main class="item" [form]="form" (addRegistration)="addStudent($event)"></app-main>
+    <div>
+        <app-allotment-limit class="item" [control]="form.controls.registration"></app-allotment-limit>
+        <app-main class="item" [form]="form" (addRegistration)="addStudent($event)"></app-main>
+    </div>
     <app-result class="item" [columns]="columns" [result]="result"></app-result>
 </form>
 

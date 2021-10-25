@@ -8,4 +8,8 @@ import { FormControl } from '@angular/forms';
 })
 export class AllotmentLimitComponent {
   @Input() control: FormControl;
+
+  getPerHostelValue() {
+    return this.control.value ? Math.floor(this.control.value / 4) : 0
+  }
 }
