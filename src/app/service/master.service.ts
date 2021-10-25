@@ -15,7 +15,10 @@ export class MasterService {
 
   constructor (
     private _snackBar: MatSnackBar
-  ) { }
+  ) {
+    this._resetResult();
+    this.setDataNotifier();
+  }
 
   getMasterData(type) {
     switch (type) {
@@ -59,15 +62,6 @@ export class MasterService {
   }
 
   private _resetResult() {
-    // food
-    // let foodType = {};
-    // this.getKeys(food).forEach(f => foodType[f] = [])
-
-    // // section
-    // this.getKeys(section).forEach(s => {
-    //   this.result[s] = foodType;
-    // });
-
     this.result = {
       A: {
         veg: [],
