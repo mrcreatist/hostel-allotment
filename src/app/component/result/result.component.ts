@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { result } from 'src/app/model';
 import { MasterService } from 'src/app/service/master.service';
 
-export interface PeriodicElement {
-  section: string;
-  veg: number[];
-  nonVeg: number[];
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  { section: 'A', veg: [1, 2, 3], nonVeg: [4, 5, 6] },
-];
 
 @Component({
   selector: 'app-result',
@@ -19,7 +11,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class ResultComponent implements OnInit {
 
   displayedColumns: string[] = ['section', 'veg', 'nonVeg'];
-  dataSource = ELEMENT_DATA;
+  dataSource: Array<result> = [];
 
   constructor (
     private _master: MasterService
@@ -30,7 +22,16 @@ export class ResultComponent implements OnInit {
   }
 
   private _getData() {
-    this._master.dataNotifier.subscribe(res => console.log(res));
+    this._master.dataNotifier.subscribe(res => {
+      this.dataSource = [];
+      Object.keys(res).forEach(element => {
+        this.dataSource.push({
+          section: element,
+          veg: res[element].veg,
+          nonVeg: res[element].nonVeg
+        })
+      })
+    });
   }
 
 }
