@@ -9,9 +9,13 @@ form {
     display: flex;
     flex-direction: row;
     gap: 1rem;
-  }
 
-  .item {
-    width: 100%;
+    @media screen and (max-width: "950px") {
+      flex-direction: column;
+    }
   }
+}
+
+.item {
+  width: 100%;
 }

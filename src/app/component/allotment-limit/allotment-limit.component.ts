@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -8,8 +8,11 @@ import { FormControl } from '@angular/forms';
 })
 export class AllotmentLimitComponent {
   @Input() control: FormControl;
+  @Input() perHostelValue: number;
+  @Input() hostelCount: number;
+  @Output() action = new EventEmitter();
 
-  getPerHostelValue() {
-    return this.control.value ? Math.floor(this.control.value / 4) : 0
+  operation(type: string) {
+    this.action.emit(type);
   }
 }

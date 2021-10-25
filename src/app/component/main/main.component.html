@@ -4,9 +4,11 @@
     <form [formGroup]="form">
       <mat-form-field appearance="outline">
         <mat-label>Roll Number</mat-label>
-        <mat-select formControlName="roll">
-          <mat-option *ngFor="let item of getRollNumber()" [value]="item">{{item}}</mat-option>
-        </mat-select>
+        <input matInput placeholder="12" formControlName="roll">
+        <!-- <ng-container [ngSwitch]=""></ng-container> -->
+        <mat-error *ngIf="form.controls.roll.hasError('required')">This field is required</mat-error>
+        <mat-error *ngIf="form.controls.roll.hasError('invalidMax')">Value should be lower or equal to {{getRegCount()}}
+        </mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Section</mat-label>
@@ -14,6 +16,7 @@
           <mat-option *ngFor="let section of getMasterData(typeEnum.section)"
             [value]="getValue(typeEnum.section, section)">{{getValue(typeEnum.section, section)}}</mat-option>
         </mat-select>
+        <mat-error *ngIf="form.controls.section.errors">This field is required</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Food Preference</mat-label>
@@ -22,10 +25,11 @@
             {{getValue(typeEnum.food, food)}}
           </mat-option>
         </mat-select>
+        <mat-error *ngIf="form.controls.food.errors">This field is required</mat-error>
       </mat-form-field>
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button color="primary" (click)="add()">ADD STUDENT</button>
+    <button [disabled]="!form.controls.roll.enabled" mat-button color="primary" (click)="add()">ADD STUDENT</button>
   </mat-card-actions>
 </mat-card>

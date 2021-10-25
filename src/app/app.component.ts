@@ -25,9 +25,9 @@ export class AppComponent implements OnInit {
   private _createForm() {
     this.form = new FormGroup({
       registration: new FormControl(null, Validators.required),
-      roll: new FormControl(),
-      section: new FormControl(),
-      food: new FormControl()
+      roll: new FormControl({ value: null, disabled: true }, Validators.required),
+      section: new FormControl({ value: null, disabled: true }, Validators.required),
+      food: new FormControl({ value: null, disabled: true }, Validators.required)
     });
   }
 
@@ -46,5 +46,45 @@ export class AppComponent implements OnInit {
 
   addStudent(data) {
     this._master.addDataToCollection(data);
+  }
+
+  onAllotmentAction(action) {
+    switch (action) {
+      case 'confirm': {
+        if (this.form.controls.registration.valid) {
+          this.setNumberOfStudents();
+        }
+        break;
+      }
+      case 'reset': {
+        this.reset();
+        break;
+      }
+    }
+  }
+
+  setNumberOfStudents() {
+    this._master.setTotalNumberOfStudents(this.form.controls.registration.value);
+    this.form.controls.registration.disable();
+    this.form.controls.roll.enable();
+    this.form.controls.section.enable();
+    this.form.controls.food.enable();
+  }
+
+  reset() {
+    this.form.reset();
+    this.form.controls.registration.enable();
+    this.form.controls.roll.disable();
+    this.form.controls.section.disable();
+    this.form.controls.food.disable();
+    this._master.reset();
+  }
+
+  getHostelCount() {
+    return this._master.getHostelCount();
+  }
+
+  getPerHostelValue() {
+    return this._master.getStudentPerHostel();
   }
 }

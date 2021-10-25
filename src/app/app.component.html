@@ -2,10 +2,12 @@
 
 <form class="container" [formGroup]="form">
     <div>
-        <app-allotment-limit class="item" [control]="form.controls.registration"></app-allotment-limit>
+        <app-allotment-limit class="item" [control]="form.controls.registration" [perHostelValue]="getPerHostelValue()"
+            [hostelCount]="getHostelCount()" (action)="onAllotmentAction($event)">
+        </app-allotment-limit>
         <app-main class="item" [form]="form" (addRegistration)="addStudent($event)"></app-main>
     </div>
-    <app-result class="item" [columns]="columns" [result]="result"></app-result>
+    <app-result [columns]="columns" [result]="result"></app-result>
 </form>
 
 <app-about></app-about>
