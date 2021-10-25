@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { food, section } from '../enum';
 import { student } from '../model';
 
 @Injectable({
@@ -7,23 +8,18 @@ import { student } from '../model';
 })
 export class MasterService {
 
-  private data = {
-    classSection: ['A', 'B'],
-    foodType: ['Veg', 'Non-Veg']
-  }
-
   private dataCollection = [];
 
   constructor (
     private _snackBar: MatSnackBar
   ) { }
 
-  getClassSection() {
-    return this.data.classSection;
-  }
-
-  getFoodType() {
-    return this.data.foodType;
+  getMasterData(type) {
+    switch (type) {
+      case 'section': return Object.keys(section);
+      case 'food': return Object.keys(food);
+    }
+    return null
   }
 
   addDataToCollection(data: student) {

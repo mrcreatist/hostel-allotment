@@ -7,3 +7,8 @@ export enum food {
     Veg = 'Veg',
     NonVeg = 'Non-Veg'
 }
+
+export enum dropType {
+    section = 'section',
+    food = 'food'
+}

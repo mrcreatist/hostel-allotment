@@ -12,7 +12,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Section</mat-label>
         <mat-select formControlName="section">
-          <mat-option *ngFor="let section of getClass()" [value]="section">{{section}}</mat-option>
+          <mat-option *ngFor="let section of getMasterData(typeEnum.section)" [value]="section">{{section}}</mat-option>
         </mat-select>
       </mat-form-field>
     </mat-grid-tile>
@@ -20,7 +20,7 @@
       <mat-form-field appearance="fill">
         <mat-label>Food Preference</mat-label>
         <mat-select formControlName="food">
-          <mat-option *ngFor="let food of getFood()" [value]="food">{{food}}</mat-option>
+          <mat-option *ngFor="let food of getMasterData(typeEnum.food)" [value]="food">{{food}}</mat-option>
         </mat-select>
       </mat-form-field>
     </mat-grid-tile>
