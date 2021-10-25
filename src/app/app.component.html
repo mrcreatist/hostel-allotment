@@ -2,8 +2,8 @@
 
 <form class="container" [formGroup]="form">
     <app-allotment-limit class="item" [control]="form.controls.registration"></app-allotment-limit>
-    <app-main class="item" [registrationCount]="form.controls.registration.value"></app-main>
-    <app-result class="item"></app-result>
+    <app-main class="item" [form]="form" (addRegistration)="addStudent($event)"></app-main>
+    <app-result class="item" [columns]="columns" [result]="result"></app-result>
 </form>
 
 <app-about></app-about>

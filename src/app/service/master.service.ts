@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { food, section } from '../enum';
+import { dropType, food, section } from '../enum';
 import { student } from '../model';
 
 @Injectable({
@@ -22,8 +22,8 @@ export class MasterService {
 
   getMasterData(type) {
     switch (type) {
-      case 'section': return Object.keys(section);
-      case 'food': return Object.keys(food);
+      case dropType.section: return Object.keys(section);
+      case dropType.food: return Object.keys(food);
       default: return null;
     }
   }

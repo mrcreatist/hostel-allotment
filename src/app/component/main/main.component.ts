@@ -1,6 +1,7 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { dropType, food, section } from 'src/app/enum';
+import { student } from 'src/app/model';
 import { MasterService } from 'src/app/service/master.service';
 
 @Component({
@@ -10,22 +11,14 @@ import { MasterService } from 'src/app/service/master.service';
 })
 export class MainComponent {
 
-  @Input() registrationCount: number;
+  @Input() form: FormGroup;
+  @Output() addRegistration = new EventEmitter<student>();
 
-  form: FormGroup;
   typeEnum = dropType;
 
   constructor (
     private _master: MasterService
-  ) { this._createForm() }
-
-  private _createForm() {
-    this.form = new FormGroup({
-      roll: new FormControl(),
-      section: new FormControl(),
-      food: new FormControl()
-    });
-  }
+  ) { }
 
   getMasterData(type: dropType) {
     return this._master.getMasterData(type);
@@ -33,7 +26,7 @@ export class MainComponent {
 
   getRollNumber() {
     let arr = [];
-    for (let i = 0; i < this.registrationCount; i++) {
+    for (let i = 0; i < this.form.controls.registration.value; i++) {
       arr.push(i + 1);
     }
     return arr;
@@ -41,14 +34,14 @@ export class MainComponent {
 
   add() {
     if (this.form.valid) {
-      this._master.addDataToCollection(this.form.value);
+      this.addRegistration.emit(this.form.value);
     }
   }
 
   getValue(type, value) {
     switch (type) {
-      case 'section': return section[value];
-      case 'food': return food[value];
+      case dropType.section: return section[value];
+      case dropType.food: return food[value];
       default: return null;
     }
   }
