@@ -5,16 +5,22 @@
     <td mat-cell *matCellDef="let element"> {{element.section}} </td>
   </ng-container>
 
-  <!-- Name Column -->
   <ng-container matColumnDef="veg">
     <th mat-header-cell *matHeaderCellDef> Veg </th>
-    <td mat-cell *matCellDef="let element"> {{element.veg}} </td>
+    <td mat-cell *matCellDef="let element">
+      {{element.veg.length ? element.veg : null}}
+      <br *ngIf="element.veg.length">
+      {{ isHostel(element) ? '(Hostel '+ getHostel(element) +')' : null}}
+    </td>
   </ng-container>
 
-  <!-- Weight Column -->
   <ng-container matColumnDef="nonVeg">
     <th mat-header-cell *matHeaderCellDef> Non-Veg </th>
-    <td mat-cell *matCellDef="let element"> {{element.nonVeg}} </td>
+    <td mat-cell *matCellDef="let element">
+      {{element.nonVeg.length ? element.nonVeg : null}}
+      <br *ngIf="element.nonVeg.length">
+      {{ isHostel(element) ? '(Hostel '+ getHostel(element) +')' : null}}
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="columns"></tr>
