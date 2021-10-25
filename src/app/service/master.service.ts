@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { food, section } from '../enum';
 import { student } from '../model';
 
@@ -9,6 +10,7 @@ import { student } from '../model';
 export class MasterService {
 
   private dataCollection = [];
+  dataNotifier = new BehaviorSubject(this.dataCollection);
 
   constructor (
     private _snackBar: MatSnackBar
@@ -18,8 +20,12 @@ export class MasterService {
     switch (type) {
       case 'section': return Object.keys(section);
       case 'food': return Object.keys(food);
+      default: return null;
     }
-    return null
+  }
+
+  setDataNotifier() {
+    this.dataNotifier.next(this.dataCollection);
   }
 
   addDataToCollection(data: student) {
@@ -32,7 +38,12 @@ export class MasterService {
       this.dataCollection.push(data);
       this._snackBar.open('Student added!');
     }
+    this.setDataNotifier();
     setTimeout(() => this._snackBar.dismiss(), 3000);
+  }
+
+  getDataCollection() {
+    return this.dataCollection;
   }
 
 }

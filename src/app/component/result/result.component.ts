@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MasterService } from 'src/app/service/master.service';
 
 @Component({
   selector: 'app-result',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ResultComponent implements OnInit {
 
-  constructor() { }
+  constructor (
+    private _master: MasterService
+  ) { }
 
   ngOnInit() {
+    this._getData();
+  }
+
+  private _getData() {
+    this._master.dataNotifier.subscribe(res => console.log(res));
   }
 
 }
