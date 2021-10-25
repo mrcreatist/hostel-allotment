@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { dropType } from 'src/app/enum';
+import { dropType, food, section } from 'src/app/enum';
 import { MasterService } from 'src/app/service/master.service';
 
 @Component({
@@ -42,6 +42,14 @@ export class MainComponent {
   add() {
     if (this.form.valid) {
       this._master.addDataToCollection(this.form.value);
+    }
+  }
+
+  getValue(type, value) {
+    switch (type) {
+      case 'section': return section[value];
+      case 'food': return food[value];
+      default: return null;
     }
   }
 

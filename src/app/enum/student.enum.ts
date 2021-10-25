@@ -4,8 +4,8 @@ export enum section {
 }
 
 export enum food {
-    Veg = 'Veg',
-    NonVeg = 'Non-Veg'
+    veg = 'Veg',
+    nonVeg = 'Non-Veg'
 }
 
 export enum dropType {

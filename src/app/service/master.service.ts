@@ -9,8 +9,9 @@ import { student } from '../model';
 })
 export class MasterService {
 
-  private dataCollection = [];
-  dataNotifier = new BehaviorSubject(this.dataCollection);
+  private dataCollection: Array<student> = [];
+  private result: any = {};
+  dataNotifier = new BehaviorSubject(this.result);
 
   constructor (
     private _snackBar: MatSnackBar
@@ -25,7 +26,7 @@ export class MasterService {
   }
 
   setDataNotifier() {
-    this.dataNotifier.next(this.dataCollection);
+    this.dataNotifier.next(this.result);
   }
 
   addDataToCollection(data: student) {
@@ -38,12 +39,49 @@ export class MasterService {
       this.dataCollection.push(data);
       this._snackBar.open('Student added!');
     }
-    this.setDataNotifier();
+    this.sortData();
     setTimeout(() => this._snackBar.dismiss(), 3000);
   }
 
-  getDataCollection() {
-    return this.dataCollection;
+  sortData() {
+    this._resetResult();
+    this.getKeys(section).forEach(s => {
+      let res = this.dataCollection.filter(_ => _.section === section[s]);
+      if (res) {
+        this.getKeys(food).forEach(f => this.result[s][f] = res.filter(_ => _.food === food[f]).map(_ => _.roll))
+      }
+    });
+    this.setDataNotifier();
+  }
+
+  getResult() {
+    return this.result;
+  }
+
+  private _resetResult() {
+    // food
+    // let foodType = {};
+    // this.getKeys(food).forEach(f => foodType[f] = [])
+
+    // // section
+    // this.getKeys(section).forEach(s => {
+    //   this.result[s] = foodType;
+    // });
+
+    this.result = {
+      A: {
+        veg: [],
+        nonVeg: []
+      },
+      B: {
+        veg: [],
+        nonVeg: []
+      }
+    }
+  }
+
+  getKeys(data) {
+    return Object.keys(data);
   }
 
 }
