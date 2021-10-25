@@ -1,4 +1,12 @@
-<mat-form-field appearance="fill">
-  <mat-label>Enter number of students</mat-label>
-  <input matInput placeholder="12" [formControl]="control">
-</mat-form-field>
+<mat-card class="mat-elevation-z8">
+  <mat-card-content>
+    <mat-grid-list cols="4" rowHeight="100px">
+      <mat-grid-tile colspan="1" rowspan="1">
+        <mat-form-field appearance="fill">
+          <mat-label>Enter number of students</mat-label>
+          <input matInput placeholder="12" [formControl]="control">
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>
