@@ -1,26 +1,31 @@
-<mat-grid-list cols="4" rowHeight="100px">
-  <mat-grid-tile colspan="1" rowspan="1">
-    <mat-form-field appearance="fill">
-      <mat-label>Roll Number</mat-label>
-      <mat-select>
-        <mat-option value="food">food</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="1" rowspan="1">
-    <mat-form-field appearance="fill">
-      <mat-label>Section</mat-label>
-      <mat-select>
-        <mat-option *ngFor="let section of getClass()" [value]="section">{{section}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </mat-grid-tile>
-  <mat-grid-tile colspan="1" rowspan="1">
-    <mat-form-field appearance="fill">
-      <mat-label>Food Preference</mat-label>
-      <mat-select>
-        <mat-option value="food">food</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </mat-grid-tile>
-</mat-grid-list>
+<form [formGroup]="form">
+  <mat-grid-list cols="4" rowHeight="100px">
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-form-field appearance="fill">
+        <mat-label>Roll Number</mat-label>
+        <mat-select formControlName="roll">
+          <mat-option *ngFor="let item of getRollNumber()" [value]="item">{{item}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-form-field appearance="fill">
+        <mat-label>Section</mat-label>
+        <mat-select formControlName="section">
+          <mat-option *ngFor="let section of getClass()" [value]="section">{{section}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-form-field appearance="fill">
+        <mat-label>Food Preference</mat-label>
+        <mat-select formControlName="food">
+          <mat-option *ngFor="let food of getFood()" [value]="food">{{food}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <button mat-raised-button color="primary" (click)="add()">Add!</button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</form>

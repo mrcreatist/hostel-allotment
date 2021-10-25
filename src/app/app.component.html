@@ -1,4 +1,13 @@
 <app-header></app-header>
-<app-main></app-main>
-<app-result></app-result>
+
+<form [formGroup]="form">
+    <mat-form-field appearance="fill">
+        <mat-label>Enter number of students</mat-label>
+        <input matInput placeholder="12" formControlName="registration">
+    </mat-form-field>
+
+    <app-main [registrationCount]="form.controls.registration.value"></app-main>
+    <app-result></app-result>
+</form>
+
 <app-about></app-about>

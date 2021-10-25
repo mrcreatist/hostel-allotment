@@ -6,6 +6,7 @@ import { component } from './component/component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { module } from './module/module';
 import { service } from './service/service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { service } from './service/service';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     ...module
   ],
   providers: [

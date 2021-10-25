@@ -5,6 +5,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
@@ -15,7 +17,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatInputModule,
     MatGridListModule,
     MatSelectModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatButtonModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule { }
