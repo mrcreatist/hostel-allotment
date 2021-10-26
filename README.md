@@ -17,6 +17,10 @@ You can checkout the production code at [https://hostel-allotment.netlify.com](h
 | FrontEnd | [![Love Angular badge](https://img.shields.io/badge/angular-red?logo=angular)](https://www.github.com/angular/angular) |
 | Deployment | [![Netlify Status](https://api.netlify.com/api/v1/badges/9abd88fe-fd13-4353-b0db-f8408494b8aa/deploy-status)](https://app.netlify.com/sites/hostel-allotment/deploys) |
 
+```
+open the console if you want the understand the command involved!
+```
+
 ## Running the Application
 
 You can run the application with following command
