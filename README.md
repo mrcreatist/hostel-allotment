@@ -1,27 +1,31 @@
-# HostelAllotment
+# Hostel Allotment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.9.
+A scalable application which can allot student a hostel based on their food and class preference.
 
-## Development server
+## Description
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This application sorts students according to their food and section preference. This is application is suitable for the institutions.
 
-## Code scaffolding
+## Live Application
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+You can checkout the production code at [https://hostel-allotment.netlify.com](https://hostel-allotment.netlify.com)
 
-## Build
+## Technical Description
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+| Area | Framework |
+| ------ | ------ |
+| FrontEnd | [![Love Angular badge](https://img.shields.io/badge/angular-red?logo=angular)](https://www.github.com/angular/angular) |
+| Deployment | [![Netlify Status](https://api.netlify.com/api/v1/badges/9abd88fe-fd13-4353-b0db-f8408494b8aa/deploy-status)](https://app.netlify.com/sites/hostel-allotment/deploys) |
 
-## Running unit tests
+## Running the Application
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+You can run the application with following command
+```
+npm start
+```
 
-## Running end-to-end tests
+## Author
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+> This application was made by Abhishek Verma.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+For more information you can [email me!](mailto:ahk.verma102@gmail.com)
