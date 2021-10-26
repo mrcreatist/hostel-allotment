@@ -15,4 +15,9 @@ export class AllotmentLimitComponent {
   operation(type: string) {
     this.action.emit(type);
   }
+
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    return !(charCode > 31 && (charCode < 48 || charCode > 57));
+  }
 }

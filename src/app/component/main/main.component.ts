@@ -25,11 +25,11 @@ export class MainComponent {
   }
 
   add() {
-    if (this.form.valid && +this.form.controls.roll.value > -1 && +this.form.controls.roll.value <= +this.getRegCount()) {
+    if (this.form.valid && +this.form.controls.roll.value > -1 && +this.form.controls.roll.value.length === +this._master.getValidRollLength()) {
       this.addRegistration.emit(this.form.value);
     } else {
-      if (this.form.controls.roll.value && +this.form.controls.roll.value > +this.getRegCount()) {
-        this.form.controls.roll.setErrors({ invalidMax: true })
+      if (this.form.controls.roll.value && (+this.form.controls.roll.value < -1 || +this.form.controls.roll.value.length !== +this._master.getValidRollLength())) {
+        this.form.controls.roll.setErrors({ invalidLength: true })
       }
       this.form.markAllAsTouched();
     }
@@ -43,8 +43,9 @@ export class MainComponent {
     }
   }
 
-  getRegCount(): number {
-    return +this._master.getTotalNumberOfStudents();
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    return !(charCode > 31 && (charCode < 48 || charCode > 57));
   }
 
 }

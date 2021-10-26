@@ -4,10 +4,9 @@
     <form [formGroup]="form">
       <mat-form-field appearance="outline">
         <mat-label>Roll Number</mat-label>
-        <input matInput placeholder="12" formControlName="roll">
+        <input matInput placeholder="12" formControlName="roll" (keypress)="numberOnly($event)">
         <mat-error *ngIf="form.controls.roll.hasError('required')">This field is required</mat-error>
-        <mat-error *ngIf="form.controls.roll.hasError('invalidMax')">Value should be lower or equal to {{getRegCount()}}
-        </mat-error>
+        <mat-error *ngIf="form.controls.roll.hasError('invalidLength')">Roll Number must be of 4 digits only</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Section</mat-label>
@@ -29,6 +28,7 @@
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button [disabled]="!form.controls.roll.enabled" mat-button color="primary" (click)="add()">ADD STUDENT</button>
+    <button [disabled]="!form.controls.roll.enabled" mat-raised-button color="primary" (click)="add()">ADD
+      STUDENT</button>
   </mat-card-actions>
 </mat-card>

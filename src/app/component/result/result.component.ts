@@ -13,6 +13,11 @@ export class ResultComponent {
   @Input() result: Array<result>;
 
   getValue(item) {
-    return item.toString().replace(',', '');
+
+    let str: string = '';
+    item.forEach((element, index) => {
+      str = str + (index === 1 && item[0].indexOf('<br>') > -1 ? '' : (index === 0 ? '' : ', ')) + element;
+    });
+    return str;
   }
 }

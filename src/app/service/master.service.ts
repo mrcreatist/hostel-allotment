@@ -13,6 +13,7 @@ export class MasterService {
   private result: any = {};
   private totalNumberOfStudents: number;
   private numberOfHostel = 4;
+  private validRollLength = 4;
   dataNotifier = new BehaviorSubject(this.result);
 
   constructor (
@@ -41,7 +42,7 @@ export class MasterService {
   }
 
   getStudentPerHostel(): number {
-    return Math.floor(this.totalNumberOfStudents / this.numberOfHostel) ? Math.floor(this.totalNumberOfStudents / this.numberOfHostel) : 0;
+    return this.totalNumberOfStudents / this.numberOfHostel ? this.totalNumberOfStudents / this.numberOfHostel : 0;
   }
 
   getHostelCount(): number {
@@ -52,8 +53,13 @@ export class MasterService {
     return this.totalNumberOfStudents;
   }
 
+  getValidRollLength() {
+    return this.validRollLength;
+  }
+
   setTotalNumberOfStudents(num: number) {
     this.totalNumberOfStudents = num;
+    this.alert('init', num);
   }
 
   setDataNotifier() {
@@ -64,42 +70,53 @@ export class MasterService {
   // operators
 
   addDataToCollection(data: student) {
-    let student = this.dataCollection.find(_ => _.roll === data.roll);
-    let studentIndex = this.dataCollection.indexOf(student);
-    if (studentIndex > -1) {
-      this.dataCollection.splice(studentIndex, 1);
+    if (this.dataCollection.indexOf(this.dataCollection.find(_ => _.roll === data.roll)) > -1) {
+      // record already present!
+      this._snackBar.open('Student already alloted!');
+    } else if (!this.hasLimit()) {
+      // max limit has reached!
+      this._snackBar.open('Registration limit has reached!')
+    } else {
+      // ready to add
+      this._sortData(data);
+      this.dataCollection.push(data);
+      this._snackBar.open('Student added!');
+      let last = this.dataCollection[this.dataCollection.length - 1];
+      this.alert('reg', last.roll, last.section, last.food === food.veg ? 'V' : 'NV');
     }
-    this.dataCollection.push(data);
-    this._snackBar.open('Student added!');
-    this._sortData();
     setTimeout(() => this._snackBar.dismiss(), 3000);
   }
 
   reset() {
+    this.alert('fin')
+    let temp = this.result;
+    this.getKeys(section).forEach(s => this.getKeys(food).forEach(f => temp[s][f].splice(0, 1)));
+    this.alert(temp)
     this._resetResult();
     this.totalNumberOfStudents = 0;
     this.dataCollection = [];
     this.setDataNotifier();
   }
 
+  alert(...text) {
+    console.log(...text);
+  }
+
+  hasLimit(): boolean {
+    return this.dataCollection.length < +this.totalNumberOfStudents
+  }
+
   // private methods
 
-  private _sortData() {
-    this._resetResult();
-    this.getKeys(section).forEach(s => {
-      let res = this.dataCollection.filter(_ => _.section === section[s]);
-      if (res) {
-        this.getKeys(food).forEach(f => {
-          res.filter(_ => _.food === food[f]).map(_ => _.roll).forEach((element, index) => {
-            if (index < this.getStudentPerHostel()) {
-              this.result[s][f].push(element)
-            } else {
-              this.result.NA[f].push(element)
-            }
-          })
-        })
-      }
-    });
+  private _sortData(data: student) {
+    let sec = this.getKeys(section).find(s => section[s] === data.section)
+    let foo = this.getKeys(food).find(f => food[f] === data.food);
+    let limit = Math.floor(this.getStudentPerHostel()) < 1 ? 1 : Math.floor(this.getStudentPerHostel());
+    if ((this.result[sec][foo].length - 1) < limit && this.hasLimit()) {
+      this.result[sec][foo].push(data.roll)
+    } else {
+      this.result.NA[foo].push(data.roll)
+    }
     this.setDataNotifier();
   }
 
