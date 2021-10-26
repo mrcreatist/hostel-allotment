@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { section } from './enum';
 import { result } from './model';
 import { MasterService } from './service/master.service';
 

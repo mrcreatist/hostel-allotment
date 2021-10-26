@@ -118,6 +118,16 @@ export class MasterService {
         nonVeg: []
       }
     }
+    this._addHostelNameToResult();
+  }
+
+  private _addHostelNameToResult() {
+    let index = 0;
+    this.getKeys(section).forEach(s => {
+      this.getKeys(food).forEach(f => {
+        this.result[s][f].push('<strong>Hostel ' + ++index + '</strong><br>')
+      })
+    });
   }
 
 }

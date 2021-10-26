@@ -7,20 +7,12 @@
 
   <ng-container matColumnDef="veg">
     <th mat-header-cell *matHeaderCellDef> Veg </th>
-    <td mat-cell *matCellDef="let element">
-      {{element.veg.length ? element.veg : null}}
-      <br *ngIf="element.veg.length">
-      {{ isHostel(element) ? '(Hostel '+ getHostel(element) +')' : null}}
-    </td>
+    <td mat-cell *matCellDef="let element" [innerHTML]="getValue(element.veg)"></td>
   </ng-container>
 
   <ng-container matColumnDef="nonVeg">
     <th mat-header-cell *matHeaderCellDef> Non-Veg </th>
-    <td mat-cell *matCellDef="let element">
-      {{element.nonVeg.length ? element.nonVeg : null}}
-      <br *ngIf="element.nonVeg.length">
-      {{ isHostel(element) ? '(Hostel '+ getHostel(element) +')' : null}}
-    </td>
+    <td mat-cell *matCellDef="let element" [innerHTML]="getValue(element.nonVeg)"></td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="columns"></tr>

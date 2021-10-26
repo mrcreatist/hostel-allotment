@@ -25,11 +25,10 @@ export class MainComponent {
   }
 
   add() {
-    console.log(this.form.controls.roll);
-    if (this.form.valid && this.form.controls.roll.value > -1 && this.form.controls.roll.value <= this.getRegCount()) {
+    if (this.form.valid && +this.form.controls.roll.value > -1 && +this.form.controls.roll.value <= +this.getRegCount()) {
       this.addRegistration.emit(this.form.value);
     } else {
-      if (this.form.controls.roll.value && (this.form.controls.roll.value < 0 || this.form.controls.roll.value > this.getRegCount())) {
+      if (this.form.controls.roll.value && +this.form.controls.roll.value > +this.getRegCount()) {
         this.form.controls.roll.setErrors({ invalidMax: true })
       }
       this.form.markAllAsTouched();
@@ -44,8 +43,8 @@ export class MainComponent {
     }
   }
 
-  getRegCount() {
-    return this._master.getTotalNumberOfStudents();
+  getRegCount(): number {
+    return +this._master.getTotalNumberOfStudents();
   }
 
 }

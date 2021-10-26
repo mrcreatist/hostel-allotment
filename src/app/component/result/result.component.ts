@@ -12,13 +12,7 @@ export class ResultComponent {
   @Input() columns: Array<result>;
   @Input() result: Array<result>;
 
-  hostel = 0;
-
-  getHostel(element) {
-    return this.isHostel(element) ? ++this.hostel : null
-  }
-
-  isHostel(element) {
-    return element.section === section.A || element.section === section.B
+  getValue(item) {
+    return item.toString().replace(',', '');
   }
 }
