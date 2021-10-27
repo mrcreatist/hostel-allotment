@@ -21,6 +21,8 @@ You can checkout the production code at [https://hostel-allotment.netlify.com](h
 open the console if you want the understand the command involved!
 ```
 
+You can find the GitHub Repository here: [hostel-allotment](https://github.com/mrcreatist/hostel-allotment)
+
 ## Running the Application
 
 You can run the application with following command

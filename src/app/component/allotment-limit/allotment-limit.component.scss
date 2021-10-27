@@ -16,4 +16,9 @@ p {
     letter-spacing: -3px;
     margin-bottom: 6px;
   }
+
+  @media screen and (max-width: "950px") {
+    font-size: 2rem;
+    width: 18rem;
+  }
 }
